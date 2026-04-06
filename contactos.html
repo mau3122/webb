@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameTech - Página Demo</title>
+
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+/* Estilos generales del body */
+body {
+    background-color: #1c1c1c; /* Fondo oscuro */
+    color: #cc3333;             /* Texto rojo */
+    font-family: 'Segoe UI', sans-serif; /* Fuente principal */
+    padding-top: 70px;          /* Espacio para navbar fijo */
+    margin: 0;                  /* Sin márgenes por defecto */
+}
+
+.navbar {
+    background-color: rgba(28,28,28,0.7); /* fondo semitransparente */
+    backdrop-filter: blur(5px); /* desenfoque */
+    transition: background-color 0.3s ease;
+}
+.navbar.scrolled {
+    background-color: rgba(28,28,28,0.95);
+}
+.navbar-brand, .nav-link {
+    color: #cc3333 !important; 
+}
+.nav-link:hover {
+    color: #a62a2a !important; 
+}
+
+/* Hero video */
+.hero-video {
+    position: relative; /* Para overlay y SVG */
+    height: 80vh;       /* Altura del viewport */
+    overflow: hidden;   /* Oculta desbordes */
+}
+.hero-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Ajusta sin deformar */
+}
+.hero-overlay {
+    position: absolute; /* Encima del video */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;      /* Centrado con flex */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(0,0,0,0.3); /* Overlay semitransparente */
+    color: #cc3333;     /* Texto rojo */
+}
+.hero-overlay h1 {
+    font-size: 3rem;    /* Tamaño del título */
+    font-weight: bold;
+}
+.hero-overlay p {
+    font-size: 1.3rem;  /* Tamaño del subtítulo */
+    margin-bottom: 15px;
+}
+.hero-overlay .btn-danger {
+    background-color: #cc3333 !important; /* Botón rojo */
+    border: none !important;
+    color: #000 !important;               /* Texto negro */
+}
+.hero-overlay .btn-danger:hover {
+    background-color: #a62a2a !important; /* Más oscuro al pasar el mouse */
+}
+
+/* SVG hero */
+.svg-hero {
+    position: absolute; /* Posición abajo */
+    bottom: 0;
+    width: 100%;
+}
+.svg-hero path {
+    fill: #cc3333; /* Color de la curva */
+}
+
+/* Títulos de secciones */
+.section-title {
+    color: #cc3333;
+    margin-bottom: 30px; /* Separación inferior */
+}
+
+/* Formularios y tarjetas */
+.card {
+    background: #1c1c1c;       /* Fondo oscuro */
+    border: 1px solid #cc3333; /* Borde rojo */
+    color: #cc3333;             /* Texto rojo */
+}
+.card input, .card textarea {
+    background: #1c1c1c;
+    border: 1px solid #cc3333;
+    color: #cc3333;
+}
+.card input::placeholder, .card textarea::placeholder {
+    color: #cc3333; /* Placeholder rojo */
+}
+.card button {
+    background-color: #cc3333; /* Botón rojo */
+    color: #000;               /* Texto negro */
+    border: none;
+}
+.card button:hover {
+    background-color: #a62a2a; /* Más oscuro al pasar el mouse */
+}
+
+/* Footer */
+footer {
+    background: #1c1c1c; /* Fondo oscuro */
+    color: #cc3333;       /* Texto rojo */
+    padding: 20px;
+}
+footer a {
+    color: #cc3333 !important; /* Enlaces rojos */
+}
+footer a:hover {
+    color: #a62a2a !important; /* Más oscuro al pasar el mouse */
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR FIJO -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+      <a class="navbar-brand fw-bold fs-2" href="">
+          <img src="Emblema gamer con armas cruzadas.png" alt="logo" width="135">
+          GameTech
+      </a>
+
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" href="tienda.html">Tienda</a></li>
+              <li class="nav-item"><a class="nav-link" href="bloc.html">Noticias</a></li>
+              <li class="nav-item"><a class="nav-link" href="contactos.html">Contacto</a></li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+<!-- HERO VIDEO -->
+<section class="hero-video">
+  <video autoplay muted loop>
+    <source src="173459-849651740_medium.mp4" type="video/mp4">
+    Tu navegador no soporta video.
+  </video>
+  <div class="hero-overlay">
+    <h1>GameTech</h1>
+    <p>Tu portal de videojuegos y contenido gamer actualizado 🎮</p>
+    <button class="btn btn-danger btn-lg">Explorar Juegos</button>
+  </div>
+ 
+</section>
+
+<!-- SECCIÓN COMENTARIOS + MAPA + FORMULARIO -->
+<section class="container mt-5 mb-5">
+  <h2 class="section-title text-center">Comentarios de la Comunidad</h2>
+
+  <div class="row">
+    <!-- Comentarios -->
+    <div class="col-md-4 mb-4">
+      <div class="card mb-3 p-3">
+        <h6>Juan P. <small class="text-muted">– 22 Marzo 2026</small></h6>
+        <p>¡Me encantó la última actualización del juego! Muy recomendable para todos los gamers.</p>
+      </div>
+      <div class="card mb-3 p-3">
+        <h6>María L. <small class="text-muted">– 20 Marzo 2026</small></h6>
+        <p>Los tutoriales y noticias de la web me han ayudado mucho a mejorar mis habilidades.</p>
+      </div>
+      <div class="card mb-3 p-3">
+        <h6>Carlos M. <small class="text-muted">– 18 Marzo 2026</small></h6>
+        <p>Gran experiencia de usuario, la tienda es muy intuitiva y rápida.</p>
+      </div>
+    </div>
+
+    <!-- Mapa -->
+    <div class="col-md-4 mb-4">
+      <div class="card p-3">
+        <h5 class="text-center mb-3">Nuestra Ubicación</h5>
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.920875256844!2d-122.08424968469284!3d37.422065779825116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb5b5fbbd8c3b%3A0x5df0f2e39ad9bb8a!2sGoogleplex!5e0!3m2!1ses!2sus!4v1600000000000!5m2!1ses!2sus" 
+          width="100%" 
+          height="350" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Formulario -->
+    <div class="col-md-4 mb-4">
+      <div class="card p-4">
+        <h5>Deja tu comentario</h5>
+        <form class="comment-form">
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Nombre" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" class="form-control" placeholder="Correo" required>
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control" rows="4" placeholder="Tu comentario" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-danger w-100">Enviar Comentario</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="mt-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+        <h3 class="fw-bold">GameTech</h3>
+        <p>Tu tienda gamer de confianza 🎮</p>
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <h5 class="fw-bold">Síguenos</h5>
+        <a href="#" class="me-3"><i class="bi bi-facebook"></i> Facebook</a>
+        <a href="#" class="me-3"><i class="bi bi-twitter"></i> Twitter</a>
+        <a href="#" class="me-3"><i class="bi bi-instagram"></i> Instagram</a>
+        <a href="#"><i class="bi bi-youtube"></i> YouTube</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

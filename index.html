@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameTech - Tienda Gamer</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+/* COLORES PRINCIPALES */
+body {
+    background-color: #242323;
+    color: #cc3333;
+    font-family: 'Segoe UI', sans-serif;
+    padding-top: 70px;
+}
+
+/* HERO VIDEO */
+.hero-video video {
+    height: 80vh; 
+    object-fit: cover;
+}
+
+.hero-overlay {
+    background: rgba(0, 0, 0, 0); 
+}
+
+.hero-video {
+    overflow: hidden; 
+    position: relative; 
+}
+
+/* SVG CURVO */
+.svg-hero {
+    position: absolute; 
+    bottom: 0;
+    width: 100%;
+}
+
+.svg-hero path {
+    fill: #cc3333;
+}
+
+/* TITULOS */
+.section-title {
+    color: #cc3333; 
+}
+
+/* TARJETAS DE JUEGOS */
+.card-tech {
+    background: #1c1c1c; 
+    color: #cc3333; 
+}
+.card-tech:hover {
+    transform: scale(1.05);
+}
+
+/* NOTICIAS */
+.news-box {
+    background: #1c1c1c;
+    padding: 20px; 
+    border-left: 4px solid #cc3333;
+    margin-bottom: 15px; 
+    color: #cc3333;
+}
+
+/* FORMULARIOS */
+input, textarea {
+    background: #1c1c1c !important; 
+    border: none !important; 
+    color: #cc3333 !important; 
+}
+
+/* BOTONES */
+.btn-danger {
+    background-color: #cc3333 !important; 
+    border: none !important; 
+    color: #000000 !important; 
+}
+.btn-danger:hover {
+    background-color: #a62a2a !important; 
+}
+
+/* NAVBAR - PUNTO 5 */
+.navbar {
+    background-color: rgba(28,28,28,0.7); /* fondo semitransparente */
+    backdrop-filter: blur(5px); /* desenfoque */
+    transition: background-color 0.3s ease;
+}
+.navbar.scrolled {
+    background-color: rgba(28,28,28,0.95);
+}
+.navbar-brand, .nav-link {
+    color: #cc3333 !important; 
+}
+.nav-link:hover {
+    color: #a62a2a !important; 
+}
+
+/* FOOTER */
+footer {
+    background: #1c1c1c;
+    color: #cc3333; 
+    padding: 20px; 
+}
+footer a {
+    color: #cc3333 !important; 
+}
+footer a:hover {
+    color: #a62a2a !important; 
+}
+
+/* NUEVA TIENDA ESTILO STEAM */
+.game-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    background: #1c1c1c;
+}
+.game-card img {
+    width: 100%;
+    transition: 0.4s;
+}
+.game-card:hover img {
+    transform: scale(1.1);
+}
+.game-info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    opacity: 0;
+    transition: 0.3s;
+}
+.game-card:hover .game-info {
+    opacity: 1;
+}
+
+/* ESTILOS ADICIONALES */
+.news-row {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+.news-row::-webkit-scrollbar {
+  display: none; /* scrollbar oculto */
+}
+.news-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.news-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+}
+.news-card h5 {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.news-card p {
+  font-size: 0.9rem;
+}
+</style>
+
+</head>
+<body>
+<!-- NAVBAR FIJO -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+      <a class="navbar-brand fw-bold fs-2" href="">
+          <img src="Emblema gamer con armas cruzadas.png" alt="logo" width="135">
+          GameTech
+      </a>
+
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+              <li class="nav-item"><a class="nav-link" href="tienda.html">Tienda</a></li>
+              <li class="nav-item"><a class="nav-link" href="bloc.html">Noticias</a></li>
+              <li class="nav-item"><a class="nav-link" href="contactos.html">Contacto</a></li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+<!-- HERO VIDEO CON OVERLAY -->
+<section class="hero-video">
+  <video autoplay muted loop class="w-100">
+    <source src="16391-271607398_medium.mp4" type="video/mp4">
+    Tu navegador no soporta video.
+  </video>
+
+  <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center">
+    <h1 class="display-3">GameTech</h1>
+    <p class="lead">Tu portal de videojuegos y contenido gamer actualizado 🎮</p>
+    <button class="btn btn-danger btn-lg">Explorar Juegos</button>
+  </div>
+</section>
+
+<!-- SCRIPT PARA EFECTO SCROLL EN NAVBAR -->
+<script>
+  const navbar = document.querySelector('.navbar');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+</script>
+<!-- CATEGORÍAS -->
+<section class="container mt-5">
+<h2 class="section-title text-center"></h2>
+<div class="row text-center">
+<div class="col-md-3 mb-3"><div class="card card-tech p-4"><h5>🎮 Acción</h5><p>Juegos intensos y llenos de adrenalina.</p></div></div>
+<div class="col-md-3 mb-3"><div class="card card-tech p-4"><h5>⚔️ RPG</h5><p>Explora mundos y mejora tu personaje.</p></div></div>
+<div class="col-md-3 mb-3"><div class="card card-tech p-4"><h5>🚗 Carreras</h5><p>Velocidad y competencia al máximo.</p></div></div>
+<div class="col-md-3 mb-3"><div class="card card-tech p-4"><h5>🧠 Estrategia</h5><p>Piensa antes de actuar.</p></div></div>
+</div>
+</section>
+
+<!--  TIENDA -->
+<section id="tienda" class="container mt-5">
+<h2 class="section-title text-center">JUEGOS EN EL TOP</h2>
+<div class="row mt-4 g-4">
+
+<div class="col-md-4">
+<div class="game-card">
+<img src="https://i.ibb.co/yFxzZ7ZV/download.jpg" class="img-fluid">
+<div class="game-info">
+<h5>Cyberpunk 2077</h5>
+<p>Mundo futurista lleno de acción.</p>
+<p><strong>Precio: $59.99</strong></p>
+<button class="btn btn-danger w-100">Comprar</button>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="game-card">
+<img src="https://i.ibb.co/MkGfj94t/cover-16x9-1709112255348.jpg" class="img-fluid">
+<div class="game-info">
+<h5>Warzone</h5>
+<p>Battle royale competitivo.</p>
+<p><strong>Gratis</strong></p>
+<button class="btn btn-danger w-100">Descargar</button>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="game-card">
+<img src="https://i.ibb.co/tThkfyQq/20257141057593-1-jpg.webp" class="img-fluid">
+<div class="game-info">
+<h5>Elden Ring</h5>
+<p>Explora un mundo épico.</p>
+<p><strong>Precio: $69.99</strong></p>
+<button class="btn btn-danger w-100">Comprar</button>
+</div>
+</div>
+</div>
+<section id="tienda" class="container mt-5">
+
+  <div class="row mt-4 g-4">
+  
+  <div class="col-md-4">
+  <div class="game-card">
+  <img src="https://i.ibb.co/fdDNjMyc/images.jpg" class="img-fluid">
+  <div class="game-info">
+  <h5>Cybe2077</h5>
+  <p>Mundo futurista lleno de acción.</p>
+  <p><strong>Precio: $55</strong></p>
+  <button class="btn btn-danger w-100">Comprar</button>
+  </div>
+  </div>
+  </div>
+  
+  <div class="col-md-4">
+  <div class="game-card">
+  <img src="https://i.ibb.co/8QPgj5x/maxresdefault.jpg" alt="maxresdefault" class="img-fluid">
+  <div class="game-info">
+  <h5>Warfar</h5>
+  <p>Battle royale competitivo.</p>
+  <p><strong>1.1</strong></p>
+  <button class="btn btn-danger w-100">Descargar</button>
+  </div>
+  </div>
+  </div>
+  
+  <div class="col-md-4">
+  <div class="game-card">
+  <img src="https://i.ibb.co/3yHKFz8R/Gears-of-War-4-arte-1.webp" class="img-fluid">
+  <div class="game-info">
+  <h5>Ring Ring</h5>
+  <p>Explora un mundo épico.</p>
+  <p><strong>Precio: $99.99</strong></p>
+  <button class="btn btn-danger w-100">Comprar</button>
+  </div>
+  </div>
+  </div>
+
+</div>
+</section>
+
+<!-- JUEGO DESTACADO -->
+<section class="container mt-5">
+  <div class="row align-items-center">
+    
+    <div class="col-md-6">
+      <div class="ratio ratio-16x9 rounded">
+        <video autoplay muted loop playsinline class="w-100 h-100" style="border-radius: 0.5rem; object-fit: cover;">
+          <source src="116678-708909905.mp4" type="video/mp4">
+          Tu navegador no soporta video.
+        </video>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <h3>Cyberpunk 2077</h3>
+      <p>Sumérgete en un mundo futurista lleno de acción, decisiones y tecnología avanzada.</p>
+      <button class="btn btn-danger">VER TRAILER</button>
+    </div>
+
+  </div>
+</section>
+<!-- VIDEO OVERLAY -->
+<section id="video-overlay">
+<section class="container-fluid px-md-5 my-5">
+<div class="row g-0 align-items-center rounded-5 overflow-hidden border" style="background-color: #1c1c1c;">
+<div class="col-lg-8 p-0">
+<div class="ratio ratio-21x9">
+<video autoplay muted loop playsinline style="object-fit: cover;">
+<source src="139010-770938030_medium.mp4" type="video/mp4">
+Tu navegador no soporta video.
+</video>
+<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(0,0,0,0.1), transparent);"></div>
+</div>
+</div>
+<div class="col-lg-4 p-5 text-center">
+<span class="badge rounded-pill px-3 py-2 mb-3" style="background-color: #cc3333; color: #000; border: none;">COMPRA EL VIP</span>
+<h2 class="fw-bold display-6" style="color: #cc3333;">GAMERS</h2>
+<p class="small mt-3" style="color: #cc3333;">Cada quien dicide como formar su futuro solo nosotros te dejamos ver con que juego decides ser el mejor cpmpra la membrecia VIP</p>
+<div class="mt-4">
+<hr class="mx-auto mb-4" style="width: 50px; height: 2px; background: #cc3333; opacity: 1;">
+<p class="fst-italic small" style="color: #cc3333;">#imperium</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+<!-- CARRUSEL TOP JUGADORES -->
+<section class="container mt-5">
+  <h2 class="section-title text-center">Top Jugadores</h2>
+  
+  <div id="topPlayersCarousel" class="carousel slide" data-bs-ride="carousel">
+    
+    <div class="carousel-inner">
+
+      <!-- SLIDE 1 -->
+      <div class="carousel-item active">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+          <div class="card card-tech text-center" style="width: 18rem;">
+            <img src="https://i.ibb.co/7J6spNGc/download.jpg" class="card-img-top rounded-circle mt-3" style="width:120px; height:120px; object-fit:cover; margin:auto;">
+            <div class="card-body">
+              <h5 class="card-title">Player1</h5>
+              <p>Posición: #1</p>
+              <p>Victorias: 245 | Nivel: 99</p>
+              <button class="btn btn-danger">Ver Perfil</button>
+            </div>
+          </div>
+
+          <div class="card card-tech text-center" style="width: 18rem;">
+            <img src="https://i.ibb.co/FtQRyhJ/images.jpg" class="card-img-top rounded-circle mt-3" style="width:120px; height:120px; object-fit:cover; margin:auto;">
+            <div class="card-body">
+              <h5 class="card-title">Player2</h5>
+              <p>Posición: #2</p>
+              <p>Victorias: 198 | Nivel: 97</p>
+              <button class="btn btn-danger">Ver Perfil</button>
+            </div>
+          </div>
+
+          <div class="card card-tech text-center" style="width: 18rem;">
+            <img src="https://i.ibb.co/3yHKFz8R/Gears-of-War-4-arte-1.webp" class="card-img-top rounded-circle mt-3" style="width:120px; height:120px; object-fit:cover; margin:auto;">
+            <div class="card-body">
+              <h5 class="card-title">Player3</h5>
+              <p>Posición: #3</p>
+              <p>Victorias: 172 | Nivel: 95</p>
+              <button class="btn btn-danger">Ver Perfil</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      
+
+      <!-- SLIDE 2 -->
+      <div class="carousel-item">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+
+          <div class="card card-tech text-center" style="width: 18rem;">
+            <img src="https://i.ibb.co/ShY6rxq/6326055.png" class="card-img-top rounded-circle mt-3" style="width:120px; height:120px; object-fit:cover; margin:auto;">
+            <div class="card-body">
+              <h5 class="card-title">Player4</h5>
+              <p>Posición: #4</p>
+              <p>Victorias: 150 | Nivel: 93</p>
+              <button class="btn btn-danger">Ver Perfil</button>
+            </div>
+          </div>
+
+          <div class="card card-tech text-center" style="width: 18rem;">
+            <img src="https://i.ibb.co/ShY6rxq/6326055.png" class="card-img-top rounded-circle mt-3" style="width:120px; height:120px; object-fit:cover; margin:auto;">
+            <div class="card-body">
+              <h5 class="card-title">Player5</h5>
+              <p>Posición: #5</p>
+              <p>Victorias: 140 | Nivel: 91</p>
+              <button class="btn btn-danger">Ver Perfil</button>
+            </div>
+          </div>
+          <div class="card card-tech text-center" style="width: 18rem;">
+            <img src="https://i.ibb.co/ShY6rxq/6326055.png" class="card-img-top rounded-circle mt-3" style="width:120px; height:120px; object-fit:cover; margin:auto;">
+            <div class="card-body">
+              <h5 class="card-title">Player5</h5>
+              <p>Posición: #5</p>
+              <p>Victorias: 140 | Nivel: 91</p>
+              <button class="btn btn-danger">Ver Perfil</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CONTROLES -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#topPlayersCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#topPlayersCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+
+  </div>
+</section>
+
+<!-- NOTICIAS MODERNAS CON GIF -->
+<section id="noticias" class="container mt-5">
+  <h2 class="section-title text-center mb-4">Noticias Gamer</h2>
+  
+  <div class="news-row">
+    
+    <!-- NOTICIA 1 -->
+    <div class="news-card p-3" style="min-width:300px; background:#1c1c1c; border-radius:12px; color:#cc3333;">
+      <div class="news-thumbnail mb-2">
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTRxcjd3ZWt3NzY1enhhODBwZm44YjNpMXNlc3ZzbWljbmZnNWI4ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9dg/RXB2a3DVs5fA9rb2nS/giphy.gif" alt="Mejoras de rendimiento" style="width:100%; border-radius:12px; object-fit:cover;">
+      </div>
+      <span class="badge bg-danger mb-2">🔥 Nuevo</span>
+      <h5>Mejoras de rendimiento</h5>
+      <p>Cyberpunk 2077 recibe su última actualización con mejoras gráficas y optimización para PC y consolas.</p>
+      <button class="btn btn-danger w-100">Ver más</button>
+    </div>
+    
+    <!-- NOTICIA 2 -->
+    <div class="news-card p-3" style="min-width:300px; background:#1c1c1c; border-radius:12px; color:#cc3333;">
+      <div class="news-thumbnail mb-2">
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExc3N4ZnBsOWo0d256aWJwOTdxOGw1c3JsZnR2NnY0cDZoZDZpZTQweCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9dg/tm8TMqk7huf0UgH75o/giphy.gif" alt="Próximos lanzamientos" style="width:100%; border-radius:12px; object-fit:cover;">
+      </div>
+      <span class="badge bg-warning mb-2">🎮 Próximo</span>
+      <h5>Próximos lanzamientos</h5>
+      <p>Warzone prepara su nueva temporada con mapas inéditos y nuevas armas para la comunidad competitiva.</p>
+      <button class="btn btn-danger w-100">Ver más</button>
+    </div>
+    
+    <!-- NOTICIA 3 -->
+    <div class="news-card p-3" style="min-width:300px; background:#1c1c1c; border-radius:12px; color:#cc3333;">
+      <div class="news-thumbnail mb-2">
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDFlYTE1ajVsMWNwaWJoOGIxZ3Vqb2c0eHo2Y2owOGZpN3c1NTc3bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/EumDGYSl7oCLhB9PRo/giphy.gif" alt="Top jugadores del mes" style="width:100%; border-radius:12px; object-fit:cover;">
+      </div>
+      <span class="badge bg-info mb-2">💎 Exclusivo</span>
+      <h5>Top jugadores del mes</h5>
+      <p>Conoce a los mejores jugadores del mes, sus estadísticas, récords y estrategias más efectivas.</p>
+      <button class="btn btn-danger w-100">Ver más</button>
+    </div>
+    
+  </div>
+</section>
+
+<!-- Destacados del Mes -->
+<section class="container mt-5">
+  <div class="row g-4">
+
+    <!-- DESTACADO 1 -->
+    <div class="col-md-6">
+      <div class="position-relative overflow-hidden rounded">
+        <video autoplay muted loop playsinline class="w-100" style="height: 350px; object-fit: cover;">
+          <source src="130835-748406225_medium.mp4" type="video/mp4">
+          Tu navegador no soporta video.
+        </video>
+        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-3" style="background: rgba(0,0,0,0.3);">
+          <h3 style="color:#cc3333;">Juegos para ANDROiD</h3>
+          <p style="color:#fff;">Explora Night City y sumérgete en una historia futurista llena de acción, decisiones y tecnología avanzada.</p>
+          <button class="btn btn-danger">Información</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- DESTACADO 2 -->
+    <div class="col-md-6">
+      <div class="position-relative overflow-hidden rounded">
+        <video autoplay muted loop playsinline class="w-100" style="height: 350px; object-fit: cover;">
+          <source src="90817-629483542.mp4" type="video/mp4">
+          Tu navegador no soporta video.
+        </video>
+        <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-end p-3" style="background: rgba(0,0,0,0.3);">
+          <h3 style="color:#cc3333;">Lo más actual</h3>
+          <p style="color:#fff;">Un mundo abierto épico lleno de desafíos, misterios y aventuras que te mantendrán pegado a la pantalla.</p>
+          <button class="btn btn-danger">Información</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- FOOTER MEJORADO -->
+<footer class="mt-5 py-4" style="background:#1c1c1c; color:#cc3333;">
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+
+    <!-- IZQUIERDA: Logo y Descripción -->
+    <div class="text-center text-md-start mb-3 mb-md-0">
+      <h3 class="fw-bold">GameTech</h3>
+      <p class="mb-0">Tu tienda gamer de confianza 🎮</p>
+    </div>
+
+    <!-- DERECHA: Redes Sociales -->
+    <div class="text-center text-md-end">
+      <h5 class="fw-bold mb-2">Síguenos</h5>
+      <a href="#" class="me-3" aria-label="Facebook" style="color:#cc3333; text-decoration:none;">
+        <i class="bi bi-facebook"></i> Facebook
+      </a>
+      <a href="#" class="me-3" aria-label="Twitter" style="color:#cc3333; text-decoration:none;">
+        <i class="bi bi-twitter"></i> Twitter
+      </a>
+      <a href="#" class="me-3" aria-label="Instagram" style="color:#cc3333; text-decoration:none;">
+        <i class="bi bi-instagram"></i> Instagram
+      </a>
+      <a href="#" aria-label="YouTube" style="color:#cc3333; text-decoration:none;">
+        <i class="bi bi-youtube"></i> YouTube
+      </a>
+    </div>
+
+  </div>
+
+  <!-- COPYRIGHT -->
+  <div class="text-center mt-3" style="font-size:0.9rem; color:#a62a2a;">
+    &copy; 2026 GameTech. Todos los derechos reservados.
+  </div>
+</footer>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
